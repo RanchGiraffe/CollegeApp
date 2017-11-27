@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FamilyMemberFragment extends android.support.v4.app.Fragment {
+public class ProfileFragment extends android.support.v4.app.Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_family_member, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         return rootView;
     }
