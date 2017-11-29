@@ -8,4 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Family Member Fragment" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="memem" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="meme" />
 </LinearLayout>
