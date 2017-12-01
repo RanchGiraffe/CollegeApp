@@ -10,6 +10,10 @@ public class Profile {
         this.lastName = lastName;
     }
 
+    public Profile() {
+        this.firstName = "Alan";
+        this.lastName = "Turing";
+    }
 
     public String getFirstName() {
         return firstName;
