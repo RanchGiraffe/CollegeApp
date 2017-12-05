@@ -1,11 +1,8 @@
 package org.pltw.examples.collegeapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 public class ApplicantActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,7 +73,7 @@ public class ApplicantActivity extends AppCompatActivity
         Fragment contentFragment = null;
 
         if (id == R.id.family_member) {
-            contentFragment = new FamilyMemberFragment();
+            contentFragment = new GuardianFragment();
         }
 
         else if (id == R.id.profile) {

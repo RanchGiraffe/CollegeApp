@@ -47,11 +47,17 @@
 
     </LinearLayout>
 
+    <DatePicker
+        android:id="@+id/DOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false">
+    </DatePicker>
+
     <Button
         android:id="@+id/Button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="update"/>
-
 
 </LinearLayout>

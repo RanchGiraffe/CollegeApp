@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     EditText mPEdit;
     EditText mPEdit2;
     Button button;
+    DatePicker flam;
 
     @Nullable
     @Override
@@ -28,6 +30,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
 
         mPEdit = (EditText) rootView.findViewById(R.id.editText);
         mPEdit2 = (EditText) rootView.findViewById(R.id.editText2);
+
+        flam = (DatePicker) rootView.findViewById(R.id.DOB);
 
         mProfile = new Profile();
 

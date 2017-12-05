@@ -1,29 +1,17 @@
 package org.pltw.examples.collegeapp;
 
-public class Guardian {
+public class Guardian extends FamilyMember{
 
-    String firstName;
-    String lastName;
+    private String occupation = "";
 
     public Guardian(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-
-    public String getFirstName() {
-        return firstName;
+    public Guardian() {
+        firstName = "Ham";
+        lastName = "Burglar";
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

@@ -1,9 +1,17 @@
 package org.pltw.examples.collegeapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Profile {
 
     String firstName;
     String lastName;
+    Date dob;
+    DateFormat DF = new SimpleDateFormat("dd/MM/yy");
+
 
     public Profile(String firstName, String lastName) {
         this.firstName = firstName;
@@ -13,6 +21,7 @@ public class Profile {
     public Profile() {
         this.firstName = "Alan";
         this.lastName = "Turing";
+        DF.format(dob);
     }
 
     public String getFirstName() {
@@ -30,4 +39,6 @@ public class Profile {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }

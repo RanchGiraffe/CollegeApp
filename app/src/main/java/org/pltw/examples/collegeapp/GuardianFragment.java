@@ -9,30 +9,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class FamilyMemberFragment extends android.support.v4.app.Fragment {
+public class GuardianFragment extends android.support.v4.app.Fragment {
 
     TextView mFMText;
     TextView mFMText2;
+    TextView occupTextView;
     EditText mFMEdit;
     EditText mFMEdit2;
-    FamilyMember mFamilyMember;
+    EditText occupEditText;
+    Guardian mGuardian;
     Button button;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_family_member, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_guardian, container, false);
         mFMText = (TextView) rootView.findViewById(R.id.textView2);
         mFMText2 = (TextView) rootView.findViewById(R.id.textView3);
 
         mFMEdit = (EditText) rootView.findViewById(R.id.editText);
         mFMEdit2 = (EditText) rootView.findViewById(R.id.editText2);
 
-        mFamilyMember = new FamilyMember();
+        Guardian mGuardian = new Guardian();
 
-        mFMText.setText(mFamilyMember.getFirstName());
-        mFMText2.setText(mFamilyMember.getLastName());
+        mFMText.setText(mGuardian.getFirstName());
+        mFMText2.setText(mGuardian.getLastName());
 
         button = (Button) rootView.findViewById(R.id.Button1);
 
@@ -41,6 +43,8 @@ public class FamilyMemberFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 mFMText.setText(mFMEdit.getText());
                 mFMText2.setText(mFMEdit2.getText());
+                occupTextView.setText(occupEditText.getText());
+
             }
 
         });
