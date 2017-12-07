@@ -10,6 +10,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class ProfileFragment extends android.support.v4.app.Fragment {
 
     TextView mPText;
@@ -18,7 +20,9 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     EditText mPEdit;
     EditText mPEdit2;
     Button button;
-    DatePicker flam;
+    DatePicker dob;
+    Calendar calendar = Calendar.getInstance();
+
 
     @Nullable
     @Override
@@ -31,7 +35,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         mPEdit = (EditText) rootView.findViewById(R.id.editText);
         mPEdit2 = (EditText) rootView.findViewById(R.id.editText2);
 
-        flam = (DatePicker) rootView.findViewById(R.id.DOB);
+        dob = (DatePicker) rootView.findViewById(R.id.DOB);
 
         mProfile = new Profile();
 
@@ -40,11 +44,24 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
 
         button = (Button) rootView.findViewById(R.id.Button1);
 
+
+        dob.init(mProfile.getDob().get(Calendar.YEAR), mProfile.getDob().get(Calendar.MONTH), mProfile.getDob().get(Calendar.DAY_OF_MONTH), null);
+
         button.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 mPText.setText(mPEdit.getText());
                 mPText2.setText(mPEdit2.getText());
+
+                int year = dob.getYear();
+                int month = dob.getMonth();
+                int day = dob.getDayOfMonth();
+
+                calendar.set(year, month, day);
+
+                mProfile.setDob(year, month, day);
             }
 
         });

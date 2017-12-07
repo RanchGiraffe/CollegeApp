@@ -5,23 +5,30 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Profile {
 
+public class Profile {
     String firstName;
     String lastName;
-    Date dob;
-    DateFormat DF = new SimpleDateFormat("dd/MM/yy");
+    Calendar dob;
 
+    public Calendar getDob() {
+        return dob;
+    }
+
+    public void setDob(int year, int month, int day) {
+        dob.set(year, month, day);
+    }
 
     public Profile(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dob = Calendar.getInstance();
+        dob.set(1999, 00, 01);
     }
 
     public Profile() {
         this.firstName = "Alan";
         this.lastName = "Turing";
-        DF.format(dob);
     }
 
     public String getFirstName() {
@@ -39,6 +46,8 @@ public class Profile {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 
 
 }
