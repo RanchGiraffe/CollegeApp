@@ -11,10 +11,6 @@ public class Profile {
     String lastName;
     Calendar dob;
 
-    public Calendar getDob() {
-        return dob;
-    }
-
     public void setDob(int year, int month, int day) {
         dob.set(year, month, day);
     }
@@ -22,13 +18,13 @@ public class Profile {
     public Profile(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dob = Calendar.getInstance();
-        dob.set(1999, 00, 01);
     }
 
     public Profile() {
         this.firstName = "Alan";
         this.lastName = "Turing";
+        this.dob = Calendar.getInstance();
+        dob.set(1999, 00, 01);
     }
 
     public String getFirstName() {
@@ -45,6 +41,10 @@ public class Profile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Calendar getDob() {
+        return dob;
     }
 
 

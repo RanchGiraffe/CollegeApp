@@ -9,16 +9,62 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+
+import java.util.ArrayList;
+
+import static android.R.attr.queryActionMsg;
+import static android.R.attr.x;
 
 public class ApplicantActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    String APP_ID = "1243E1F9-2DE8-66B9-FF87-65D8F17F3700";
+    String ANDROID_API_KEY = "F29AFC2E-A949-A0AC-FF7B-553CB706AC00";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applicant);
+
+
+        /*ArrayList<User> users = new ArrayList<>();
+        String[] fname = new String[]{"Camryn", "Jason", "Big", "Lil'"};
+        String[] lname = new String[]{"Byrd", "Bourne", "Mike", "Pump"};
+        String[] gname1 = new String[]{"Travis", "John", "Papi", "Big Groove"};
+        String[] gname2 = new String[]{"Latifah", "Patrick", "Mami", "Gazzy"};
+
+        for (int x = 0, x<4, x++){
+            Profile profile = new Profile(fname[x], lname[x]);
+            Guardian guardian1 = new Guardian(gname1[x], gname2[x]);
+            Guardian guardian2 = new Guardian(gname1[x], gname2[x]);
+            User user = new User("User"+String.valueOf(x+1), "Password"+String.valueOf(x+1), profile, guardian1, guardian2,);
+            users.add(user);
+        }*/
+
+        Backendless.initApp(this, APP_ID, ANDROID_API_KEY);
+        BackendlessUser user = new BackendlessUser();
+        user.setEmail("clwclw3@gmail.com");
+        user.setPassword("bonk");
+
+        Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>(){
+            @Override
+            public void handleResponse(BackendlessUser backendlessUser){
+                Log.i( "User ", backendlessUser.getEmail() + " successfully registered" );
+            }
+            @Override
+            public void handleFault(BackendlessFault backendlessFault) {
+                Log.e( "Backendless reg error! ", backendlessFault.getMessage());
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
