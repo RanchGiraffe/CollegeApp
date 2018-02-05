@@ -11,6 +11,10 @@ public class Profile {
     String lastName;
     Calendar dob;
 
+    String email;
+    String objectId;
+
+
     public void setDob(int year, int month, int day) {
         dob.set(year, month, day);
     }
@@ -48,6 +52,19 @@ public class Profile {
     }
 
 
+    public String getObjectId() {
+        return objectId;
+    }
 
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

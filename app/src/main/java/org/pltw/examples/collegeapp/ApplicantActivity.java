@@ -1,5 +1,7 @@
 package org.pltw.examples.collegeapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -29,25 +31,21 @@ public class ApplicantActivity extends AppCompatActivity
     String APP_ID = "1243E1F9-2DE8-66B9-FF87-65D8F17F3700";
     String ANDROID_API_KEY = "F29AFC2E-A949-A0AC-FF7B-553CB706AC00";
 
+
+    public static String EMAIL_PREF = "EMAIL_PREP";
+    private String MY_EMAIL_ADDRESS = "clwclw3@gmail.com";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applicant);
 
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EMAIL_PREF, MY_EMAIL_ADDRESS);
+        editor.commit();
 
-        /*ArrayList<User> users = new ArrayList<>();
-        String[] fname = new String[]{"Camryn", "Jason", "Big", "Lil'"};
-        String[] lname = new String[]{"Byrd", "Bourne", "Mike", "Pump"};
-        String[] gname1 = new String[]{"Travis", "John", "Papi", "Big Groove"};
-        String[] gname2 = new String[]{"Latifah", "Patrick", "Mami", "Gazzy"};
-
-        for (int x = 0, x<4, x++){
-            Profile profile = new Profile(fname[x], lname[x]);
-            Guardian guardian1 = new Guardian(gname1[x], gname2[x]);
-            Guardian guardian2 = new Guardian(gname1[x], gname2[x]);
-            User user = new User("User"+String.valueOf(x+1), "Password"+String.valueOf(x+1), profile, guardian1, guardian2,);
-            users.add(user);
-        }*/
 
         Backendless.initApp(this, APP_ID, ANDROID_API_KEY);
         BackendlessUser user = new BackendlessUser();

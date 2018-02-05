@@ -1,5 +1,7 @@
 package org.pltw.examples.collegeapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,7 +13,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.DataQueryBuilder;
+
 import java.util.Calendar;
+import java.util.List;
 
 public class ProfileFragment extends android.support.v4.app.Fragment {
 
@@ -25,6 +33,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     Calendar calendar = Calendar.getInstance();
     int WITHIN_8_YEARS = 2011;
     String TAG = "Profile Fragment";
+
+
 
 
     @Nullable
@@ -76,5 +86,43 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         }});
 
         return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
+        if (mProfile.getEmail() == null) {
+            mProfile.setEmail(email);
+        }
+        String whereClause = "email = '" + email + "'";
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+            @Override
+            public void handleResponse(List<Profile> profile) {
+                if (!profile.isEmpty()) {
+                    String profileId = profile.get(0).getObjectId();
+                    Log.d(TAG, "Object ID: " + profileId);
+                    mProfile.setObjectId(profileId);
+                }
+            }
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e(TAG, "Failed to find profile: " + fault.getMessage());
+            }
+        });
+
+        Backendless.Data.of(Profile.class).save(mProfile, new AsyncCallback<Profile>() {
+            @Override
+            public void handleResponse(Profile response) {
+                Log.i(TAG, "Saved profile to Backendless");
+            }
+            public void handleFault(BackendlessFault fault) {
+                Log.i(TAG, "Failed to save profile!" + fault.getMessage());
+            }
+        });
     }
 }
