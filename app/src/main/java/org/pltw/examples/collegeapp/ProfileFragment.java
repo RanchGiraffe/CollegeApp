@@ -21,6 +21,8 @@ import com.backendless.persistence.DataQueryBuilder;
 import java.util.Calendar;
 import java.util.List;
 
+import static org.pltw.examples.collegeapp.R.id.profile;
+
 public class ProfileFragment extends android.support.v4.app.Fragment {
 
     TextView mPText;
@@ -86,6 +88,33 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         }});
 
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
+        String whereClause = "email = '" + email + "'";
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+            @Override
+            public void handleResponse(List<Profile> profile) {
+                if (!profile.isEmpty()) {
+                    mProfile = profile.get(0);
+                    mPText.setText(mProfile.getFirstName());
+                    mPText2.setText(mProfile.getLastName());
+                    dob.init(mProfile.getDob().get(Calendar.YEAR), mProfile.getDob().get(Calendar.MONTH), mProfile.getDob().get(Calendar.DAY_OF_MONTH), null);
+                }
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e(TAG, "Failed to find profile: " + fault.getMessage());
+
+            }
+        });
     }
 
     @Override

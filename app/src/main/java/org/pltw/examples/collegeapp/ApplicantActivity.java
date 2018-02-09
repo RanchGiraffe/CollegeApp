@@ -49,7 +49,6 @@ public class ApplicantActivity extends AppCompatActivity
 
         Backendless.initApp(this, APP_ID, ANDROID_API_KEY);
         BackendlessUser user = new BackendlessUser();
-        user.setEmail("clwclw3@gmail.com");
         user.setPassword("bonk");
 
         Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>(){
